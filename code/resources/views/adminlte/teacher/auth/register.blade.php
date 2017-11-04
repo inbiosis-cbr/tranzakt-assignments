@@ -35,14 +35,17 @@
       </div>
       <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
         <input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @if ($errors->has('password_confirmation'))
             <p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
         @endif
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register New Account</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Register as Teacher</button>
+          <p class="small">
+            NOTE: Registration require administrator approval to login.
+          </p>
         </div>
         <!-- /.col -->
       </div>
