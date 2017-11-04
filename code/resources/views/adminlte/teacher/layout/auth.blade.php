@@ -31,7 +31,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Styles -->
+    <!--
     <link href="/css/app.css" rel="stylesheet">
+    -->
 
     <!-- Scripts -->
     <script>
