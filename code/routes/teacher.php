@@ -7,6 +7,5 @@ Route::get('/home', function () {
 
     //dd($users);
 
-    return view('teacher.home');
+    return view('adminlte.teacher.home');
 })->name('home');
-
