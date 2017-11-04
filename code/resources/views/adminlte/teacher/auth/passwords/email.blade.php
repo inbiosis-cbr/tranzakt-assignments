@@ -1,4 +1,4 @@
-@extends('teacher.layout.auth')
+@extends('adminlte.teacher.layout.auth')
 
 <!-- Main Content -->
 @section('content')
