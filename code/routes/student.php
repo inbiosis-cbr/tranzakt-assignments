@@ -6,7 +6,6 @@ Route::get('/home', function () {
     $users[] = Auth::guard('student')->user();
 
     //dd($users);
-
-    return view('student.home');
+    $userType = 'student';
+    return view('adminlte.student.home', compact('userType'));
 })->name('home');
-
