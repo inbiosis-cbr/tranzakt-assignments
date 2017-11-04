@@ -14,4 +14,5 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.copy('node_modules/admin-lte/dist', 'public/assets/admin-lte');
+//We do that in themes
+//mix.copy('node_modules/admin-lte/dist', 'public/assets/admin-lte');
