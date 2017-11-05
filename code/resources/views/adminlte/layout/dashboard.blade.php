@@ -538,13 +538,14 @@
 <script src="../themes/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS -->
 <script src="../themes/adminlte/bower_components/Chart.js/Chart.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../themes/adminlte/dist/js/pages/dashboard2.js"></script>
 
 @stack('scripts-last')
 
 @php
 /*
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../themes/adminlte/dist/js/pages/dashboard2.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="../themes/adminlte/dist/js/demo.js"></script>
 */

@@ -71,10 +71,10 @@
         <h4 class="modal-title">New Teaching Subject</h4>
       </div>
       <div class="modal-body">
-        <p>Form for new subject</p>
+      	@include('adminlte.teacher.subject.forms.create')
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary">Submit</button>
+      	<button type="button" class="btn btn-primary" onClick="$('#form-teacher-subject-create').submit();">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>

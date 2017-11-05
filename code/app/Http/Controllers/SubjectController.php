@@ -38,7 +38,19 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        print_r($request->input('subject'));
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'code' => 'required|max:30',
+        ]);
+
+        print_r($request->input('subject'));
+
+        return \App\Subject::firstOrCreate(
+            $request->input('subject')
+        );
     }
 
     /**

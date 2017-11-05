@@ -12,4 +12,6 @@ class Subject extends Model
      * @var string
      */
     protected $table = 'subjects';
+
+    protected $guarded = [''];
 }
