@@ -4,18 +4,30 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="../themes/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        
+      @switch($userType)
+        @case('teacher')
+          <img src="https://www.gravatar.com/avatar/{{ md5(Auth::guard('teacher')->user()->email) }}" class="img-circle" alt="User Image">
+          @break
+        @case('student')
+          <img src="https://www.gravatar.com/avatar/{{ md5(Auth::guard('student')->user()->email) }}" class="img-circle" alt="User Image">
+          @break
+        @default
+          <img src="../themes/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+          @break
+      @endswitch
+
       </div>
       <div class="pull-left info">
         @switch($userType)
           @case('teacher')
-            <p>Teacher X</p>
+            <p>{{ Auth::guard('teacher')->user()->name }}</p>
             @break
           @case('student')
-            <p>Student X</p>
+            <p>{{ Auth::guard('student')->user()->name }}</p>
             @break
           @default
-            <p>Student X</p>
+            <p>{{ Auth::guard('student')->user()->name }}</p>
             @break
         @endswitch
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
