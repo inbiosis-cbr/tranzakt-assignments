@@ -83,10 +83,55 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<div class="modal modal-default fade" id="modal-update-subject">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Update Teaching Subject</h4>
+      </div>
+      <div class="modal-body" id="modal-body-update-subject">
+
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-primary" onClick="$('#form-teacher-subject-update').submit();">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endpush
 
 @push('scripts-last')
 <!-- DataTables -->
 <script src="../themes/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../themes/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+	$(function(){
+		$(".btn-edit-subject").each(function(){
+			if($(this).data('subjectid') != undefined){
+				$(this).on('click', function(){
+					$.ajax({
+						method: "GET",
+						url: "{{ url('teacher/subject') }}" + '/' + $(this).data('subjectid') + '/edit',
+						data: ''
+					})
+					.done(function(response) {
+						if(response.html != undefined){
+							$("#modal-body-update-subject").html(response.html);
+							$("#modal-update-subject").modal('show');
+						}
+					});
+				});
+			}
+		});
+	});
+</script>
+
 @endpush

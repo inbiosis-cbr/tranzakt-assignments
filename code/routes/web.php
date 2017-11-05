@@ -42,3 +42,5 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/password/reset', 'StudentAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
     Route::get('/password/reset/{token}', 'StudentAuth\ResetPasswordController@showResetForm');
 });
+
+Route::get('/teacher/subject/edit/{$id}', 'SubjectController@edit');

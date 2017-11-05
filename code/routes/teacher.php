@@ -10,8 +10,9 @@ Route::get('/home', function () {
     return view('adminlte.teacher.home', compact('userType'));
 })->name('home');
 
-Route::resource('/subject', 'SubjectController')->middleware('teacher');
-Route::resource('/grade', 'GradeController')->middleware('teacher');
-
-//Post new subject
+//Additional routes
+Route::get('/subject/edit/{$id}', 'SubjectController@edit');
 Route::post('/subject/create', 'SubjectController@store');
+
+Route::resource('/subject', 'SubjectController');
+Route::resource('/grade', 'GradeController');

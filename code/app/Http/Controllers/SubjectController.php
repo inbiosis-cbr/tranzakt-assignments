@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use View;
 
 class SubjectController extends Controller
 {
@@ -73,7 +74,12 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = \App\Subject::find($id);
+        return response()->json([
+            'html' => View::make('adminlte.teacher.subject.forms.update')
+                ->withSubject($subject)
+                ->render()
+        ]);
     }
 
     /**
@@ -85,7 +91,19 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'subject.name' => 'required|max:255',
+            'subject.code' => 'required|max:30',
+        ]);
+
+        $updateItem = \App\Subject::find($id);
+        $updateItem->update($request->input('subject'));
+        return redirect(url('teacher/subject'));
+
+        //Not applicable
+        return response()->json([
+            'subject' => $updateItem->getAttributes()
+        ]);
     }
 
     /**
