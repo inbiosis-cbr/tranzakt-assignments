@@ -10,7 +10,7 @@
 @endphp
 
   <!-- form start -->
-  <form id="form-teacher-subject-create" role="form" method="POST" action="{{ url('/teacher/subject') }}">
+  <form id="form-teacher-subject-create" role="form" method="POST" action="{{ url('/teacher/subject/create') }}">
     {{ csrf_field() }}
     <div class="box-body">
       <div class="form-group">
