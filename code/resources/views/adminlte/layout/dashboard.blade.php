@@ -517,12 +517,16 @@
 </div>
 <!-- ./wrapper -->
 
+@stack('app-modals')
+
 <!-- jQuery 3 -->
 <script src="../themes/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../themes/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="../themes/adminlte/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- SlimScroll -->
+<script src="../themes/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../themes/adminlte/dist/js/adminlte.min.js"></script>
 <!-- Sparkline -->
@@ -536,7 +540,14 @@
 <script src="../themes/adminlte/bower_components/Chart.js/Chart.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../themes/adminlte/dist/js/pages/dashboard2.js"></script>
+
+@stack('scripts-last')
+
+@php
+/*
 <!-- AdminLTE for demo purposes -->
 <script src="../themes/adminlte/dist/js/demo.js"></script>
+*/
+@endphp
 </body>
 </html>

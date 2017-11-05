@@ -9,3 +9,7 @@ Route::get('/home', function () {
     $userType = 'teacher';
     return view('adminlte.teacher.home', compact('userType'));
 })->name('home');
+
+
+Route::resource('subject', 'SubjectController')->middleware('teacher');
+Route::resource('grade', 'GradeController')->middleware('teacher');
