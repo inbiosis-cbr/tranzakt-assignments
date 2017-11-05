@@ -99,9 +99,41 @@ class TeacherController extends Controller
     /**
      * Manage student subjects
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function studentEnroll()
+    public function studentEnroll(Request $request)
     {
+        $student = \App\Student::find($request->input('id'));
+        $subjects = \App\Subject::orderBy('name')->get();
+
+        return view('adminlte.teacher.student.enroll')
+            ->withStudent($student)
+            ->withSubjects($subjects)
+            ->withUserType('teacher');
+    }
+
+    /**
+     * Assign subject to student.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addStudentSubject(Request $request)
+    {
+        $validatedData = $request->validate([
+            'studentSubject.student_id' => 'required',
+            'studentSubject.subject_id' => 'required',
+        ]);
+
+        $newItem = \App\StudentSubject::firstOrCreate(
+            $request->input('studentSubject')
+        );
+        return redirect(url('teacher/student-enroll') . '?id=' . $newItem->student_id);
+
+        //Not applicable
+        return response()->json([
+            'studentSubject' => $newItem->getAttributes()
+        ]);
     }
 }

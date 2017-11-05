@@ -38,4 +38,9 @@ class Student extends Authenticatable
     {
         $this->notify(new StudentResetPassword($token));
     }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\StudentSubject', 'student_id')->orderBy('created_at');
+    }
 }

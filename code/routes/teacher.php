@@ -21,7 +21,8 @@ Route::post('/subject-grades/add', 'SubjectController@assignGrade');
 
 //Student module
 Route::get('/students', 'TeacherController@students');
-Route::post('/student-enroll', 'TeacherController@studentEnroll');
+Route::get('/student-enroll', 'TeacherController@studentEnroll');
+Route::post('/student-subject/create', 'TeacherController@addStudentSubject');
 
 //Resources
 Route::resource('/subject', 'SubjectController');
