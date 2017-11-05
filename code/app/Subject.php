@@ -14,4 +14,9 @@ class Subject extends Model
     protected $table = 'subjects';
 
     protected $guarded = [''];
+
+    public function grades()
+    {
+        return $this->belongsToMany('App\Grade', 'subject_grades', 'subject_id', 'grade_id');
+    }
 }

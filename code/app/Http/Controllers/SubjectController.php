@@ -116,4 +116,20 @@ class SubjectController extends Controller
     {
         //
     }
+
+    /**
+     * Show list of grades assigned to this resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function grades(Request $request)
+    {
+        $subject = \App\Subject::find($request->input('id'));
+        $grades = \App\Grade::orderBy('name')->get();
+        return view('adminlte.teacher.subject.grades')
+            ->withSubject($subject)
+            ->withGrades($grades)
+            ->withUserType('teacher');
+    }
 }
