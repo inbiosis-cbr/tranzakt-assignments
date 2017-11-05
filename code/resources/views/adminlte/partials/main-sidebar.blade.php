@@ -56,8 +56,14 @@
       </li>
 
       @if($userType == 'teacher')
-      <li class="header">CURRICULUM</li>
+      <li class="header">STUDENTS</li>
+      <li>
+        <a href="{{ url('teacher/students') }}">
+          <i class="fa fa-users"></i> <span>Students</span>
+        </a>
+      </li>
 
+      <li class="header">CURRICULUM</li>
       <li>
         <a href="{{ url('teacher/subject') }}">
           <i class="fa fa-magic"></i> <span>Subjects</span>

@@ -11,10 +11,18 @@ Route::get('/home', function () {
 })->name('home');
 
 //Additional routes
+
+//Subject module
 Route::post('/subject/create', 'SubjectController@store');
 Route::post('/grade/create', 'GradeController@store');
 Route::get('/subject-grades', 'SubjectController@grades');
 Route::post('/subject-grades/add', 'SubjectController@assignGrade');
 
+
+//Student module
+Route::get('/students', 'TeacherController@students');
+Route::post('/student-enroll', 'TeacherController@studentEnroll');
+
+//Resources
 Route::resource('/subject', 'SubjectController');
 Route::resource('/grade', 'GradeController');

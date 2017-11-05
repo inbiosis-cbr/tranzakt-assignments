@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -80,5 +80,28 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function students()
+    {
+        $students = \App\Student::all();
+
+        return view('adminlte.teacher.student.list')
+            ->withStudents($students)
+            ->withUserType('teacher');
+    }
+
+    /**
+     * Manage student subjects
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function studentEnroll()
+    {
     }
 }
