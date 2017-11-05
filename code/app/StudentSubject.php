@@ -19,4 +19,9 @@ class StudentSubject extends Model
     {
         return $this->belongsTo('App\Subject', 'subject_id');
     }
+
+    public function grade()
+    {
+        return $this->hasOne('App\StudentGrade', 'student_subject_id');
+    }
 }
