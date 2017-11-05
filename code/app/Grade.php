@@ -12,4 +12,6 @@ class Grade extends Model
      * @var string
      */
     protected $table = 'grades';
+
+    protected $guarded = [''];
 }

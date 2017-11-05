@@ -63,6 +63,12 @@
           <i class="fa fa-magic"></i> <span>Subjects</span>
         </a>
       </li>
+
+      <li>
+        <a href="{{ url('teacher/grade') }}">
+          <i class="fa fa-trophy"></i> <span>Grades</span>
+        </a>
+      </li>
       @endif
 
       @php

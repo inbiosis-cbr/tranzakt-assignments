@@ -14,5 +14,8 @@ Route::get('/home', function () {
 Route::get('/subject/edit/{$id}', 'SubjectController@edit');
 Route::post('/subject/create', 'SubjectController@store');
 
+Route::get('/grade/edit/{$id}', 'GradeController@edit');
+Route::post('/grade/create', 'GradeController@store');
+
 Route::resource('/subject', 'SubjectController');
 Route::resource('/grade', 'GradeController');

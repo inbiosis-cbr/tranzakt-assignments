@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use View;
 
-class GradeController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,10 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grades = \App\Grade::all();
+        $students = \App\Student::all();
 
-        return view('adminlte.teacher.grade.list')
-            ->withGrades($grades)
+        return view('adminlte.teacher.student.list')
+            ->withStudents($students)
             ->withUserType('teacher');
     }
 
@@ -39,21 +38,7 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'grade.name' => 'required|max:255',
-            'grade.code' => 'required|max:30',
-            'grade.score' => 'required',
-        ]);
-
-        $newItem = \App\Grade::firstOrCreate(
-            $request->input('grade')
-        );
-        return redirect(url('teacher/grade'));
-
-        //Not applicable
-        return response()->json([
-            'grade' => $newItem->getAttributes()
-        ]);
+        //
     }
 
     /**
@@ -75,12 +60,7 @@ class GradeController extends Controller
      */
     public function edit($id)
     {
-        $grade = \App\Grade::find($id);
-        return response()->json([
-            'html' => View::make('adminlte.teacher.grade.forms.update')
-                ->withGrade($grade)
-                ->render()
-        ]);
+        //
     }
 
     /**
@@ -92,20 +72,7 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'grade.name' => 'required|max:255',
-            'grade.code' => 'required|max:30',
-            'grade.score' => 'required',
-        ]);
-
-        $updateItem = \App\Grade::find($id);
-        $updateItem->update($request->input('grade'));
-        return redirect(url('teacher/grade'));
-
-        //Not applicable
-        return response()->json([
-            'grade' => $updateItem->getAttributes()
-        ]);
+        //
     }
 
     /**
