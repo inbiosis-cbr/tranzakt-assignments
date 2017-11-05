@@ -38,10 +38,20 @@
       <li class="header">MAIN NAVIGATION</li>
 
       <li class="active">
-        <a href="pages/widgets.html">
+        <a href="{{ url('teacher/home') }}">
           <i class="fa fa-home"></i> <span>Dashboard</span>
         </a>
       </li>
+
+      @if($userType == 'teacher')
+      <li class="header">CURRICULUM</li>
+
+      <li>
+        <a href="{{ url('teacher/subject') }}">
+          <i class="fa fa-magic"></i> <span>Subjects</span>
+        </a>
+      </li>
+      @endif
 
       @php
       /*
