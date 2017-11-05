@@ -132,4 +132,28 @@ class SubjectController extends Controller
             ->withGrades($grades)
             ->withUserType('teacher');
     }
+
+    /**
+     * Assign grade to subject
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignGrade(Request $request)
+    {
+        $validatedData = $request->validate([
+            'grade.grade_id' => 'required',
+            'grade.subject_id' => 'required',
+        ]);
+
+        $newItem = \App\SubjectGrade::firstOrCreate(
+            $request->input('grade')
+        );
+        return redirect(url('teacher/subject-grades') . '?id=' . $request->input('grade.subject_id'));
+
+        //Not applicable
+        return response()->json([
+            'subjectGrade' => $newItem->getAttributes()
+        ]);
+    }
 }

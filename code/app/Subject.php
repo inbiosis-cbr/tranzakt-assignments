@@ -19,4 +19,9 @@ class Subject extends Model
     {
         return $this->belongsToMany('App\Grade', 'subject_grades', 'subject_id', 'grade_id');
     }
+
+    public function subjectGrades()
+    {
+        return $this->hasMany('App\SubjectGrade', 'subject_id')->orderBy('ordering');
+    }
 }

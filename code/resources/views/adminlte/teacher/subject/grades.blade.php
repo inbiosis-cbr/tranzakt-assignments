@@ -43,7 +43,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($subject->grades as $grade)
+									@foreach($subject->subjectGrades as $subjectGrade)
 										@include('adminlte.teacher.subject.partials.grade-list-item')
 									@endforeach
 								</tbody>

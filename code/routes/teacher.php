@@ -11,9 +11,10 @@ Route::get('/home', function () {
 })->name('home');
 
 //Additional routes
-Route::get('/subject-grades', 'SubjectController@grades');
 Route::post('/subject/create', 'SubjectController@store');
 Route::post('/grade/create', 'GradeController@store');
+Route::get('/subject-grades', 'SubjectController@grades');
+Route::post('/subject-grades/add', 'SubjectController@assignGrade');
 
 Route::resource('/subject', 'SubjectController');
 Route::resource('/grade', 'GradeController');
