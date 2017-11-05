@@ -87,7 +87,7 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal modal-default fade" id="modal-update-grade">
+<div class="modal modal-default fade" id="modal-mark-studentSubject">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -95,11 +95,11 @@
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Update Subject Grade</h4>
       </div>
-      <div class="modal-body" id="modal-body-update-grade">
+      <div class="modal-body" id="modal-body-mark-studentSubject">
 
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" onClick="$('#form-teacher-grade-update').submit();">Submit</button>
+      	<button type="button" class="btn btn-primary" onClick="$('#form-teacher-mark-student-subject').submit();">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -117,18 +117,18 @@
 
 <script>
 	$(function(){
-		$(".btn-edit-grade").each(function(){
-			if($(this).data('gradeid') != undefined){
+		$(".btn-mark-studentSubject").each(function(){
+			if($(this).data('studentsubjectid') != undefined){
 				$(this).on('click', function(){
 					$.ajax({
-						method: "GET",
-						url: "{{ url('teacher/grade') }}" + '/' + $(this).data('gradeid') + '/edit',
+						method: "POST",
+						url: "{{ url('teacher/student-subject') }}" + '/' + $(this).data('studentsubjectid') + '/edit',
 						data: ''
 					})
 					.done(function(response) {
 						if(response.html != undefined){
-							$("#modal-body-update-grade").html(response.html);
-							$("#modal-update-grade").modal('show');
+							$("#modal-body-mark-studentSubject").html(response.html);
+							$("#modal-mark-studentSubject").modal('show');
 						}
 					});
 				});

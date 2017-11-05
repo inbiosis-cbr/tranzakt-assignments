@@ -2,9 +2,9 @@
   <td>{{ $studentSubject->subject->name }} ({{ $studentSubject->subject->code }})</td>
   <td>{{ \Carbon\Carbon::parse($studentSubject->created_at)->format('d M Y') }}</td>
   <td>
-    @if(isset($studentSubject->grade))
+    @if(isset($studentSubject->subjectGrade))
       <label class="label label-info">
-        {{ $studentSubject->grade->code }}
+        {{ $studentSubject->subjectGrade->grade->code }}
       </label>
     @else
       <label class="label label-default">
@@ -13,8 +13,8 @@
     @endif
   </td>
   <td>
-    <a href="{{ url('teacher/student-enroll') . '?id=' . $student->id }}" class="btn btn-warning" alt="Enroll Subject" title="Enroll Subject" data-studentid="{{ $student->id }}">
-      <i class="fa fa-edit"></i>
+    <a href="javascript:void(0);" class="btn btn-warning btn-mark-studentSubject" alt="Mark Subject Grade" title="Mark Subject Grade" data-studentsubjectid="{{ $studentSubject->id }}">
+      <i class="fa fa-star-o"></i>
     </a>
   </td>
 </tr>

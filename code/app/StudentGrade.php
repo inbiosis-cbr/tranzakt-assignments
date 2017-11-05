@@ -24,4 +24,9 @@ class StudentGrade extends Model
     {
         return $this->belongsTo('App\StudentSubject', 'student_subject_id');
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher', 'graded_by');
+    }
 }

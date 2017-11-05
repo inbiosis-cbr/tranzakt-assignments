@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use View;
 
 class TeacherController extends Controller
 {
@@ -134,6 +135,52 @@ class TeacherController extends Controller
         //Not applicable
         return response()->json([
             'studentSubject' => $newItem->getAttributes()
+        ]);
+    }
+
+    /**
+     * Get content for student subject edit.
+     *
+     * @param  integer  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function editStudentSubject($id, Request $request)
+    {
+        $studentSubject = \App\StudentSubject::find($id);
+        return response()->json([
+            'html' => View::make('adminlte.teacher.student.forms.mark-student-subject')
+                ->withStudentSubject($studentSubject)
+                ->render()
+        ]);
+    }
+
+    /**
+     * Mark grade to student subject
+     *
+     * @param  integer  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function markStudentSubject($id, Request $request)
+    {
+        $validatedData = $request->validate([
+            'studentGrade.grade_id' => 'required',
+        ]);
+
+        $studentSubject = \App\StudentSubject::find($id);
+        $newItem = \App\StudentGrade::firstOrCreate(
+            $request->input('studentGrade'),
+            [
+                'student_subject_id' => $studentSubject->id,
+                'graded_by' => \Auth::guard('teacher')->user()->id,
+            ]
+        );
+        return redirect(url('teacher/student-enroll') . '?id=' . $studentSubject->student_id);
+
+        //Not applicable
+        return response()->json([
+            'studentGrade' => $newItem->getAttributes()
         ]);
     }
 }
