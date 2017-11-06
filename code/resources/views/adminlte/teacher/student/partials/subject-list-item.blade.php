@@ -2,9 +2,9 @@
   <td>{{ $studentSubject->subject->name }} ({{ $studentSubject->subject->code }})</td>
   <td>{{ \Carbon\Carbon::parse($studentSubject->created_at)->format('d M Y') }}</td>
   <td>
-    @if(isset($studentSubject->subjectGrade))
+    @if(isset($studentSubject->studentGrade))
       <label class="label label-info">
-        {{ $studentSubject->subjectGrade->grade->code }}
+        {{ $studentSubject->studentGrade->grade->code }}
       </label>
     @else
       <label class="label label-default">
