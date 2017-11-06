@@ -7,5 +7,10 @@ Route::get('/home', function () {
 
     //dd($users);
     $userType = 'student';
-    return view('adminlte.student.home', compact('userType'));
+
+    return view('adminlte.student.subjects')
+        ->withSubjects(Auth::guard('student')->user()->subjects)
+        ->withUserType($userType);
+
+    //return view('adminlte.student.results', compact('userType'));
 })->name('home');

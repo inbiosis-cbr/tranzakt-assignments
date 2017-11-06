@@ -82,7 +82,19 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+
+                  @switch($userType)
+                    @case('teacher')
+                      <a href="{{ url('teacher/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                      @break
+                    @case('student')
+                      <a href="{{ url('student/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                      @break
+                    @default
+                      <a href="{{ url('student/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                      @break
+                  @endswitch
+
                 </div>
               </li>
             </ul>

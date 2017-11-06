@@ -31,7 +31,24 @@
                 <div class="box-body" style="min-height: 600px;">
                     <div class="row">
                         <div class="col-sm-12">
-                            You are logged in as Student!
+
+                            <table id="grade-table-list" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Enrolled Date</th>
+                                        <th>Grade</th>
+                                        <th>Teacher</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($subjects as $studentSubject)
+                                        @include('adminlte.student.partials.subject-list-item', ['studentSubject' => $studentSubject])
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>

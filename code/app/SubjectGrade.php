@@ -24,4 +24,26 @@ class SubjectGrade extends Model
     {
         return $this->belongsTo('App\Subject', 'subject_id');
     }
+
+    /**
+     * Scope a query to only include by subject.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBySubject($query, $subject_id)
+    {
+        return $query->where('subject_id', $subject_id);
+    }
+
+    /**
+     * Scope a query to only include by grade.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByGrade($query, $grade_id)
+    {
+        return $query->where('grade_id', $grade_id);
+    }
 }

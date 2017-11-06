@@ -11,6 +11,18 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function subjects()
+    {
+        return view('adminlte.students.subjects')
+            ->withSubjects(\Auth::guard('student')->user->subjects)
+            ->withUserType('student');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //

@@ -20,6 +20,11 @@ class StudentGrade extends Model
         return $this->belongsTo('App\Grade', 'grade_id');
     }
 
+    public function subjectGrades()
+    {
+        return $this->belongsToMany('App\Grade', 'subject_grades', 'grade_id');
+    }
+
     public function studentSubject()
     {
         return $this->belongsTo('App\StudentSubject', 'student_subject_id');

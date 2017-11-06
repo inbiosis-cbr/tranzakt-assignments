@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('/login', 'TeacherAuth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'TeacherAuth\LoginController@login');
+    Route::get('/logout', 'TeacherAuth\LoginController@logout')->name('logout');
     Route::post('/logout', 'TeacherAuth\LoginController@logout')->name('logout');
+    Route::post('/login', 'TeacherAuth\LoginController@login');
+    
 
     Route::get('/register', 'TeacherAuth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'TeacherAuth\RegisterController@register');
@@ -31,9 +33,10 @@ Route::group(['prefix' => 'teacher'], function () {
 
 Route::group(['prefix' => 'student'], function () {
     Route::get('/login', 'StudentAuth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'StudentAuth\LoginController@login');
+    Route::get('/logout', 'StudentAuth\LoginController@logout')->name('logout');
     Route::post('/logout', 'StudentAuth\LoginController@logout')->name('logout');
-
+    Route::post('/login', 'StudentAuth\LoginController@login');
+    
     Route::get('/register', 'StudentAuth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'StudentAuth\RegisterController@register');
 
