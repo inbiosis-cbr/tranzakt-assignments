@@ -34,18 +34,33 @@
                         <?php
                         foreach ($student_grades as $data) {
                             $enroll_date = date('d M Y', strtotime($data['created_at']));
+
+                            $grade_code = <<<EOT
+<span class="label label-info">N/A</span>
+
+EOT;
+                            if (isset($data['grade_code'])) {
+                                $grade_code = <<<EOT
+<span class="label label-info">{$data['grade_code']}</span>
+
+EOT;
+                            }
+
                             $passingLabel = <<<EOT
 <span class="label label-default">N/A</span>
+
 EOT;
                             
                             if (isset($data['grade_is_passing'])) {
                                 if ($data['grade_is_passing']) {
                                     $passingLabel = <<<EOT
 <span class="label label-success">Passed</span>
+
 EOT;
                                 } else {
                                     $passingLabel = <<<EOT
 <span class="label label-danger">Failed</span>
+
 EOT;
                                 }
                             }
@@ -59,12 +74,25 @@ EOT;
                             if (isset($data['graded_teacher'])) {
                                 $graded_teacher = $data['graded_teacher'];
                             }
+
+                            $grade_content = <<<EOT
+<span class="label label-info">N/A</span>
+
+EOT;
+                            if (isset($data['grade_code'])) {
+                                $grade_content = <<<EOT
+{$grade_code} / {$passingLabel} {$graded_date}
+
+EOT;
+                            }
+                            
+
                             echo <<<EOT
                         <tr>
                           <td>{$data['subject_name']}</td>
                           <td>{$enroll_date}</td>
                           <td>
-                            {$data['grade_code']} / {$passingLabel} {$graded_date}
+                            {$grade_content}
                           </td>
                           <td>{$graded_teacher}</td>
                           <td>  

@@ -37,7 +37,7 @@
                           <td>{$student['email']}</td>
                           <td> - </td>
                           <td>  
-                            <button type="button" class="btn btn-warning" alt="Enroll Subject" title="Enroll Subject">
+                            <button type="button" class="btn btn-warning" alt="Enroll Subject" title="Enroll Subject" onClick="window.location='./teacher-enroll.php?id={$student['id']}';">
                               <i class="fa fa-magic"></i>
                             </button>
                           </td>
