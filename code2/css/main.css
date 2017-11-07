@@ -1,9 +1,17 @@
 
 
 /* ==========================================================================
-   Author's custom styles
+   Tranzakt Code's custom styles
    ========================================================================== */
 
+.main-container{
+	min-height: 600px;
+	height: 600px;
+}
+
+.content-margin-top{
+	margin-top: 120px;
+}
 
 
 
