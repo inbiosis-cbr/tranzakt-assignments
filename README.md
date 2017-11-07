@@ -21,6 +21,8 @@ Password demo123
 
 # Simplifed site
 
+### Student
+
 ```
 Username: demo@k2inno.com
 Password demo123
