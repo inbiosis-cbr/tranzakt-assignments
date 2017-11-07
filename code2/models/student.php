@@ -78,14 +78,90 @@ function db_assign_student_subject($student_id = 0, $subject_id = 0)
     global $pdo;
 
     $sql = <<<EOT
-INSERT INTO student_subjects (student_id, subject_id, created_at, updated_at) 
-VALUES (:student_id, :subject_id, NOW(), NOW()) 
+SELECT * FROM student_subjects 
+WHERE student_id = :student_id AND subject_id = :subject_id
 EOT;
-    
-    $pdo->prepare($sql)->execute([
+
+    $stmt = $pdo->prepare($sql)->execute([
         'student_id' => $student_id,
         'subject_id' => $subject_id
     ]);
+    $exists = $stmt->fetchAll();
 
+    if (count($exists) > 0) {
+        //Do nothing.
+    } else {
+        $sql = <<<EOT
+INSERT INTO student_subjects (student_id, subject_id, created_at, updated_at) 
+VALUES (:student_id, :subject_id, NOW(), NOW()) 
+EOT;
+        $pdo->prepare($sql)->execute([
+            'student_id' => $student_id,
+            'subject_id' => $subject_id
+        ]);
+    }
+    
     return true;
+}
+
+function db_get_studentSubjects($student_id = 0)
+{
+    global $pdo;
+
+    $sql = <<<EOT
+SELECT *, ss.id as student_subject_id, ss.created_at as enrolled_at 
+FROM student_subjects AS ss
+JOIN subjects AS s ON s.id = ss.subject_id 
+WHERE ss.student_id = :student_id
+EOT;
+
+    $stmt = $pdo->prepare($sql);
+    $params = [
+        'student_id' => $student_id,
+    ];
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
+}
+
+function db_get_studentSubject($student_subject_id = 0)
+{
+    global $pdo;
+
+    $sql = <<<EOT
+SELECT ss.*, stu.name AS student_name, s.name AS subject_name, s.code as subject_code 
+FROM student_subjects AS ss 
+JOIN students AS stu ON ss.student_id = stu.id 
+JOIN subjects AS s ON ss.subject_id = s.id 
+WHERE ss.id = :student_subject_id
+EOT;
+
+    $stmt = $pdo->prepare($sql);
+    $params = [
+        'student_subject_id' => $student_subject_id,
+    ];
+    $stmt->execute($params);
+
+    return $stmt->fetch();
+}
+
+function db_get_student_grade($student_subject_id = 0)
+{
+    global $pdo;
+
+    $sql = <<<EOT
+SELECT stug.*, g.code as code, g.name as name, subg.is_passing as is_passing FROM student_grades AS stug
+JOIN subject_grades as subg ON stug.grade_id = subg.id 
+JOIN grades AS g ON subg.grade_id = g.id 
+WHERE student_subject_id = :student_subject_id 
+ORDER BY id DESC;
+EOT;
+
+    $stmt = $pdo->prepare($sql);
+    $params = [
+        'student_subject_id' => $student_subject_id,
+    ];
+    $stmt->execute($params);
+
+    return $stmt->fetch();
 }

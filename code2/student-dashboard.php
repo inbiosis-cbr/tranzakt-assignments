@@ -65,6 +65,7 @@ EOT;
                                 }
                             }
 
+                            $grade = db_get_student_grade($data['id']);
                             $graded_date = '-';
                             if (isset($data['graded_at'])) {
                                 $graded_date = date('d M Y', strtotime($data['graded_at']));
@@ -75,13 +76,22 @@ EOT;
                                 $graded_teacher = $data['graded_teacher'];
                             }
 
-                            $grade_content = <<<EOT
-<span class="label label-info">N/A</span>
+                            $gradeContent = <<<EOT
+<span class="label label-default">N/A</span>
 
 EOT;
-                            if (isset($data['grade_code'])) {
-                                $grade_content = <<<EOT
-{$grade_code} / {$passingLabel} {$graded_date}
+                            if (isset($grade['code'])) {
+                                if ($grade['is_passing']) {
+                                    $passingLabel = <<<EOT
+<span class="label label-success">Passed</span>
+EOT;
+                                } else {
+                                    $passingLabel = <<<EOT
+<span class="label label-danger">Failed</span>
+EOT;
+                                }
+                                $gradeContent = <<<EOT
+<span class="label label-default">{$grade['code']}</span> / {$passingLabel}
 
 EOT;
                             }
@@ -92,7 +102,7 @@ EOT;
                           <td>{$data['subject_name']}</td>
                           <td>{$enroll_date}</td>
                           <td>
-                            {$grade_content}
+                            {$gradeContent}
                           </td>
                           <td>{$graded_teacher}</td>
                           <td>  

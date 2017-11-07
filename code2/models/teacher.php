@@ -47,3 +47,41 @@ EOT;
 
     return $stmt->fetchAll();
 }
+
+function db_assign_student_grade($student_subject_id = 0, $grade_id = 0)
+{
+    global $pdo;
+
+    $sql = <<<EOT
+SELECT * FROM student_grades 
+WHERE student_subject_id = :student_subject_id
+EOT;
+    $stmt = $pdo->prepare($sql);
+    $params = [
+        'student_subject_id' => $student_subject_id,
+    ];
+    $stmt->execute($params);
+    $exists = $stmt->fetchAll();
+
+    if (count($exists) > 0) {
+        $sql = <<<EOT
+UPDATE student_grades SET grade_id = :grade_id, graded_by = :graded_by, updated_at = NOW() 
+WHERE student_subject_id = :student_subject_id
+EOT;
+    } else {
+        $sql = <<<EOT
+INSERT INTO student_grades (student_subject_id, grade_id, graded_by, created_at, updated_at) 
+VALUES (:student_subject_id, :grade_id, :graded_by, NOW(), NOW())
+EOT;
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $params = [
+        'student_subject_id' => $student_subject_id,
+        'grade_id' => $grade_id,
+        'graded_by' => (isset($_SESSION['AUTH_TEACHER']['id'])) ? $_SESSION['AUTH_TEACHER']['id'] : 0
+    ];
+    $stmt->execute($params);
+
+    return true;
+}
