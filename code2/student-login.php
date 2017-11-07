@@ -1,6 +1,6 @@
 <?php
-  include('header.php')
-  include('controller/student-login.php');
+  include('header.php');
+  include('controllers/student-login.php');
 ?>
 
     <div class="container"> <!-- close at footer.php -->

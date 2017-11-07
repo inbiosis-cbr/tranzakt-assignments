@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_SESSION['AUTH_TEACHER'])) {
     echo <<<EOT
