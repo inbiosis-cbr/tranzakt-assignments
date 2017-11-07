@@ -18,3 +18,18 @@ Password demo123
 Username: support@k2inno.com
 Password demo123
 ```
+
+# Simplifed site
+
+```
+Username: demo@k2inno.com
+Password demo123
+```
+
+### Teacher
+
+```
+Username: demo@k2inno.com
+Password demo123
+```
+
