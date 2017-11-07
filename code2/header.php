@@ -1,10 +1,6 @@
 <?php
   session_start();
 
-if (isset($_SESSION['AUTH_TEACHER'])) {
-    header('Location: teacher-dashboard.php');
-}
-
   include('database.php');
 ?>
 <!doctype html>
@@ -28,6 +24,9 @@ if (isset($_SESSION['AUTH_TEACHER'])) {
             }
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>

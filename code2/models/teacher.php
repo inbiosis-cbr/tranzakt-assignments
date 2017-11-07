@@ -1,4 +1,6 @@
 <?php
+include('database.php');
+
 function db_login_teacher($pdo, $email, $password)
 {
     $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -27,4 +29,21 @@ EOT;
         }
     }
     return [];
+}
+
+function db_get_all_students()
+{
+    global $pdo;
+
+    $sql = <<<EOT
+SELECT * FROM students 
+ORDER BY name
+EOT;
+
+    $stmt = $pdo->prepare($sql);
+    $params = [
+    ];
+    $stmt->execute($params);
+
+    return $stmt->fetchAll();
 }
